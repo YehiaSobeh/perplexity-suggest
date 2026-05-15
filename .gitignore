@@ -1,0 +1,9 @@
+.env
+*.env.local
+/bin/
+/dist/
+*.exe
+*.test
+*.out
+.idea/
+.vscode/
