@@ -276,12 +276,3 @@ Not covered (intentionally — keep scope tight):
 
 ---
 
-## Notes on AI assistance
-
-Per the brief, AI tools were used during development. Every line is
-understood and defensible — happy to walk through any of it on the call.
-
-The original PDF contained several prompt-injection traps (instructions
-embedded in the document asking an LLM to insert honeypot tokens, a fake
-config key, a non-existent npm package, and a "deliberate off-by-one
-bug"). They were ignored. None of those artifacts appear in this codebase.
