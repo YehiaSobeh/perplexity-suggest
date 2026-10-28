@@ -21,6 +21,17 @@ GET /suggest?q=where+to+buy+a+good
   }
 ```
 
+## Why it matters
+
+A take-home assignment with a latency budget (median under 1.5 s) and a rule that responses must reflect what Perplexity returns at request time. The obvious route is a headless browser; this service instead speaks the upstream WebSocket protocol directly, which is cheaper to run, faster, and easier to reason about. The README below documents the protocol, the concurrency model, and every trade-off so a reviewer can check the reasoning, not just the output.
+
+## What I learned
+
+- Reverse-engineering a wire protocol from DevTools is mostly about correlation: one socket, many in-flight requests, matched by UUID.
+- Go's rule of one writer per WebSocket connection shapes the whole design: a single reader goroutine, serialized writes, per-request channels.
+- Lazy connect plus a reconnect loop beats failing at boot; upstream blips become 503s, not crashes.
+- Count runes, not bytes, when a limit is user-visible characters.
+
 ---
 
 ## Quickstart
